@@ -1,4 +1,4 @@
-OBJECTS = test.o stack.o 
+OBJECTS = test.o queue.o 
 CFLAGS = -g -Wall
 INCLUDE = -I include 
 TARGET = test

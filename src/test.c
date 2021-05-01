@@ -1,30 +1,28 @@
 #include <stdio.h>
-#include "stack.h"
-
-
+#include "queue.h"
 
 
 int main(void) 
 {
 
 	int d[10]; 
-	stack_t *s;
+	queue_t *q;
 
 	for (int i = 0; i < 10; ++i) {
 		d[i] = i;
 	}
 
-	stack_init(&s);
+	queue_init(&q);
 
 	for (int i = 0; i < 10; ++i) 
-		stack_push(s, &d[i]);
+		queue_enque(q, &d[i]);
 
 	for (int i = 0; i < 5; ++i) {
-		void *v = stack_pop(s);
+		void *v = queue_deque(q);
 		printf("*v = %d\n", *(int*)v);
 	}
 
-	stack_free(s);
+	queue_free(q);
 
 	return 0;
 }
