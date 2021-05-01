@@ -1,4 +1,4 @@
-OBJECTS = test.o list.o observer.o
+OBJECTS = test.o stack.o 
 CFLAGS = -g -Wall
 INCLUDE = -I include 
 TARGET = test
