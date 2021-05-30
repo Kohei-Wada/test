@@ -33,8 +33,5 @@ $(OBJDIR)/%.o : $(LIBDIR)/%.c
 	$(CC) $(CFLAGS) $(LDLIBS) $(INCLUDE) -o $@ -c $<
 	
 
-install:
-	mkdir ~/.snake/
-
 clean :
 	rm -f bin/$(TARGET) $(OBJDIR)/*
