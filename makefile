@@ -1,6 +1,6 @@
 OBJECTS = test.o 
 CFLAGS = -g -Wall 
-LDLIBS = -lm
+LDLIBS = -pthread 
 INCLUDE = -I include 
 TARGET = test
 SOURCES = $(OBJECTS: %c = %o)
@@ -8,16 +8,33 @@ SOURCES = $(OBJECTS: %c = %o)
 LIBDIR = lib
 OBJDIR = obj
 SOURCEDIR = src
+BINDIR = bin
 
 
-#$(warning $(SOURCES))
-$(TARGET) : $(addprefix obj/, $(notdir $(OBJECTS))) 
+
+all: $(BINDIR)/$(TARGET)
+
+$(BINDIR)/$(TARGET) : $(addprefix obj/, $(notdir $(OBJECTS))) 
+	@if [ ! -d $(BINDIR) ]; then\
+		mkdir $(BINDIR);\
+	fi
 	$(CC) $(CFLAGS)  -o $@ $^  $(LDLIBS)
 
 $(OBJDIR)/%.o : $(SOURCEDIR)/%.c
+	@if [ ! -d $(OBJDIR) ]; then\
+		mkdir $(OBJDIR);\
+	fi;
 	$(CC) $(CFLAGS) $(LDLIBS) $(INCLUDE) -o $@ -c $< 
 
 $(OBJDIR)/%.o : $(LIBDIR)/%.c
+	@if [ ! -d $(OBJDIR) ]; then\
+		mkdir $(OBJDIR);\
+	fi;
 	$(CC) $(CFLAGS) $(LDLIBS) $(INCLUDE) -o $@ -c $<
+	
+
+install:
+	mkdir ~/.snake/
+
 clean :
-	rm -f $(TARGET) $(OBJDIR)/*
+	rm -f bin/$(TARGET) $(OBJDIR)/*
