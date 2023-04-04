@@ -1,6 +1,6 @@
 OBJECTS = test.o 
 CFLAGS = -g -Wall 
-LDLIBS = -pthread 
+LDLIBS =
 INCLUDE = -I include 
 TARGET = test
 SOURCES = $(OBJECTS: %c = %o)
